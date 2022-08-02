@@ -34,14 +34,13 @@ readdirSync("./routes").map((r) => {
 });
 
 // tell Heroku Server to serve static files
-// if (process.env.Node_ENV == "production") {
-//   app.use(express.static("client/build"));
-//   const path = require("path");
-
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(dirname, "client/build/index.html"));
-});
-// }
+if (process.env.Node_ENV == "production") {
+  app.use(express.static("client/build"));
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 // Start server
 const port = process.env.PORT || 9000;
