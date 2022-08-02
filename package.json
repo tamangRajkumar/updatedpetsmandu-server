@@ -6,7 +6,7 @@
 
   "main": "server.js",
   "scripts": {
-    "start": "nodemon -r esm server.js"   
+    "start": "node -r esm server.js"   
   },
   "keywords": [],
   "author": "",
