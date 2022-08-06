@@ -261,8 +261,8 @@ export const addFavoritePost = async (req, res) => {
 // user search request
 export const userSearchRequest = async (req, res) => {
   // console.log(req.body);
-  const { query } = req.params;
-  console.log(query);
+  const query = req.params.query;
+  // console.log(query);
   if (!query) return;
   try {
     const post = await Post.find({
@@ -280,6 +280,6 @@ export const userSearchRequest = async (req, res) => {
     console.log(post);
     res.json(post);
   } catch (error) {
-    console.log("Error=> ", error);
+    console.log("Error is=> ", error);
   }
 };
