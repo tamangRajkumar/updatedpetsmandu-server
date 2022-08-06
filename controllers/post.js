@@ -257,3 +257,9 @@ export const addFavoritePost = async (req, res) => {
     return res.json({ addedToFavoriteList: "true" });
   } catch (error) {}
 };
+
+// user search request
+export const userSearchRequest = async (req, res) => {
+  // console.log(req.body);
+  const searchInput = req.body.searchInput;
+};

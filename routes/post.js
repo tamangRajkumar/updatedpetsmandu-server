@@ -19,7 +19,8 @@ import {
   submitPostComment,
   deletePostComment,
   postCommentsDataOnly,
-  addFavoritePost
+  addFavoritePost,
+  userSearchRequest,
 } from "../controllers/post";
 
 router.post("/create-post", requireSignin, createPost);
@@ -34,6 +35,7 @@ router.put("/updatepost/:_postId", updatePost);
 router.post("/submit-post-comment", requireSignin, submitPostComment);
 router.put("/delete-post-comment", requireSignin, deletePostComment);
 router.post("/post-comments-data", requireSignin, postCommentsDataOnly);
-router.post("/add-favorite-post", requireSignin, addFavoritePost)
+router.post("/add-favorite-post", requireSignin, addFavoritePost);
+router.post("/user-search-request", userSearchRequest);
 
 module.exports = router;
