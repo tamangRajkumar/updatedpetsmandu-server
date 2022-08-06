@@ -261,16 +261,16 @@ export const addFavoritePost = async (req, res) => {
 // user search request
 export const userSearchRequest = async (req, res) => {
   // console.log(req.body);
-  const query = req.params.query;
+  const { query } = req.params;
   // console.log(query);
   if (!query) return;
   try {
     const post = await Post.find({
       $or: [
-        { title: { $regex: query, $options: "i" } },
-        { description: { $regex: query, $options: "i" } },
-        { category: { $regex: query, $options: "i" } },
-        { address: { $regex: query, $options: "i" } },
+        { title: { $regex: query, $options: "ix" } },
+        { description: { $regex: query, $options: "ix" } },
+        { category: { $regex: query, $options: "ix" } },
+        { address: { $regex: query, $options: "ix" } },
       ],
     })
       .populate("postedBy", "_id fname lname image ")
