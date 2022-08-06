@@ -36,6 +36,6 @@ router.post("/submit-post-comment", requireSignin, submitPostComment);
 router.put("/delete-post-comment", requireSignin, deletePostComment);
 router.post("/post-comments-data", requireSignin, postCommentsDataOnly);
 router.post("/add-favorite-post", requireSignin, addFavoritePost);
-router.post("/user-search-request", userSearchRequest);
+router.get("/user-search-request/:query", userSearchRequest);
 
 module.exports = router;

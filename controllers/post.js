@@ -188,7 +188,7 @@ export const submitPostComment = async (req, res) => {
       .populate("postedBy", "_id fname lname image ")
       .populate("comments.postedBy", "_id fname lname image");
 
-    console.log(updatedPost);
+    // console.log(updatedPost);
     return res.json({ commentPosted: "true", updatedPost });
   } catch (error) {
     console.log("Error=> ", error);
@@ -261,5 +261,25 @@ export const addFavoritePost = async (req, res) => {
 // user search request
 export const userSearchRequest = async (req, res) => {
   // console.log(req.body);
-  const searchInput = req.body.searchInput;
+  const { query } = req.params;
+  console.log(query);
+  if (!query) return;
+  try {
+    const post = await Post.find({
+      $or: [
+        { title: { $regex: query, $options: "i" } },
+        { description: { $regex: query, $options: "i" } },
+        { category: { $regex: query, $options: "i" } },
+        { address: { $regex: query, $options: "i" } },
+      ],
+    })
+      .populate("postedBy", "_id fname lname image ")
+      .populate("comments.postedBy", "_id fname lname image")
+      .sort({ createdAt: -1 })
+      .limit(10);
+    console.log(post);
+    res.json(post);
+  } catch (error) {
+    console.log("Error=> ", error);
+  }
 };
